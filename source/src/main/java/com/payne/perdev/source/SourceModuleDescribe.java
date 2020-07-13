@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
  * About      类描述：
  * 查看第三方框架源码的模块，没有实际用途
  */
-public class SourceModuleTest {
+public class SourceModuleDescribe {
 
     public static void test(){
         Retrofit retrofit = new Retrofit.Builder()

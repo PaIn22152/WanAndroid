@@ -1,7 +1,7 @@
 package com.payne.perdev.wanandroid;
 
-import com.payne.perdev.api.ApiModuleTest;
-import com.payne.perdev.net.NetModuleTest;
+import com.payne.perdev.api.ApiModuleDescribe;
+import com.payne.perdev.net.NetModuleDescribe;
 
 /**
  * Project    WanAndroid
@@ -12,8 +12,8 @@ import com.payne.perdev.net.NetModuleTest;
  */
 public class AppTest {
     public static void test(){
-        ApiModuleTest.test();
+        ApiModuleDescribe.test();
 
-        NetModuleTest.test();
+        NetModuleDescribe.test();
     }
 }
