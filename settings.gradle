@@ -1,0 +1,5 @@
+rootProject.name='WanAndroid'
+include ':app'
+include ':net'
+include ':api'
+include ':source'
