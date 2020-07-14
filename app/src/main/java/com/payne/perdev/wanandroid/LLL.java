@@ -1,19 +1,18 @@
-package com.payne.perdev.api;
+package com.payne.perdev.wanandroid;
 
 import android.util.Log;
 
 /**
  * Project    WanAndroid
- * Path       com.payne.perdev.api
- * Date       2020/07/13 - 18:32
+ * Path       com.payne.perdev.wanandroid
+ * Date       2020/07/14 - 10:25
  * Author     Payne.
  * About      类描述：
  */
-public class AM_L {
-
+public class LLL {
 
     public static final boolean LOG_SHOW = true;
-    public static final String TAG = "apimoduletag";
+    public static final String TAG = "deftag";
 
     public static void d(String tag, String s) {
         if (LOG_SHOW) {
@@ -35,5 +34,4 @@ public class AM_L {
     public static void e(String s) {
         e(TAG, s);
     }
-
 }

@@ -1,5 +1,7 @@
 package com.payne.perdev.net.interfaces;
 
+import java.util.Map;
+
 /**
  * Project    WanAndroid
  * Path       com.payne.perdev.net.interfaces
@@ -11,6 +13,6 @@ public interface IHttpProcessor {
 
     void get(String path, IHttpCallback callback);
 
-    void post(String path, IHttpCallback callback);
+    void post(String path, Map<String,String> params, IHttpCallback callback);
 
 }
