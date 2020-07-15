@@ -18,6 +18,7 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -77,6 +78,7 @@ public class OkHttpProcessor implements IHttpProcessor {
                     okhttp3.Response execute = okHttpClient.newCall(request).execute();
                     callback(execute, callback);
 
+                    execute.body().close();
                 } catch (Exception e) {
                     NM_L.d("OkHttpProcessor e = " + e);
                     if (callback != null) {
@@ -98,6 +100,7 @@ public class OkHttpProcessor implements IHttpProcessor {
                     callback.onSuccess(string);
                 } else {
                     callback.onFailure(execute.message(), execute.code());
+//                    callback.onFailure(execute.body().string(), execute.code());
                 }
             } catch (Exception e) {
                 callback.onFailure("e=" + e, 0);
@@ -112,12 +115,20 @@ public class OkHttpProcessor implements IHttpProcessor {
             @Override
             public void run() {
 
+                FormBody.Builder builder=new FormBody.Builder();
+                for(Map.Entry<String,String> entry:params.entrySet()){
+                    builder.add(entry.getKey(),entry.getValue());
+                }
+
                 NM_L.d("");
                 String req = getJsonParams(params);
                 NM_L.d(" post  req = " + req);
+
                 Request request = new Request.Builder()
                         .url(path)
-                        .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, req))
+//                        .post(RequestBody.create(MEDIA_TYPE_MARKDOWN, req))
+                        .post(builder.build())
+
                         .build();
                 NM_L.d("");
 
