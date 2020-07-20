@@ -5,24 +5,14 @@ import com.payne.perdev.net.ThreadPool;
 import com.payne.perdev.net.interfaces.IHttpCallback;
 import com.payne.perdev.net.interfaces.IHttpProcessor;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.cert.CertificateException;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 
 /**
  * Project    WanAndroid
@@ -115,9 +105,9 @@ public class OkHttpProcessor implements IHttpProcessor {
             @Override
             public void run() {
 
-                FormBody.Builder builder=new FormBody.Builder();
-                for(Map.Entry<String,String> entry:params.entrySet()){
-                    builder.add(entry.getKey(),entry.getValue());
+                FormBody.Builder builder = new FormBody.Builder();
+                for (Map.Entry<String, String> entry : params.entrySet()) {
+                    builder.add(entry.getKey(), entry.getValue());
                 }
 
                 NM_L.d("");
@@ -135,6 +125,8 @@ public class OkHttpProcessor implements IHttpProcessor {
                 try {
                     okhttp3.Response execute = okHttpClient.newCall(request).execute();
                     callback(execute, callback);
+
+                    execute.body().close();
                 } catch (Exception e) {
                     NM_L.d("OkHttpProcessor post e = " + e);
                     if (callback != null) {

@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
  * About      类描述：
  */
 public class ThreadPool {
-    private static ExecutorService executorService = Executors.newFixedThreadPool(2);
+    private static ExecutorService executorService = Executors.newCachedThreadPool();
 
     public static void run(Runnable run) {
         executorService.execute(run);

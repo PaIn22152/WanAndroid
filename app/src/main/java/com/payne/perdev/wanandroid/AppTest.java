@@ -1,11 +1,17 @@
 package com.payne.perdev.wanandroid;
 
+import com.payne.perdev.api.ApiHelper;
 import com.payne.perdev.api.ApiModuleDescribe;
+import com.payne.perdev.api.Call;
+import com.payne.perdev.api.Callback;
 import com.payne.perdev.net.NetModuleDescribe;
 import com.payne.perdev.net.interfaces.IHttpCallback;
 import com.payne.perdev.net.okhttp.OkHttpProcessor;
+import com.payne.perdev.wanandroid.api.WanApiService;
+import com.payne.perdev.wanandroid.beans.WXArticleBean;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +31,23 @@ public class AppTest {
 
     public static void apitest() {
 
+        ApiHelper apiHelper = new ApiHelper.Builder()
+                .baseUrl("https://wanandroid.com/")
+                .build();
+        WanApiService service = apiHelper.create(WanApiService.class);
+        Call<List<WXArticleBean>> wxArticle = service.getWXArticle();
+        wxArticle.enqueue(new Callback<List<WXArticleBean>>() {
+            @Override
+            public void onResponse(Call<List<WXArticleBean>> call) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<WXArticleBean>> call, Throwable t) {
+
+            }
+        });
+
         LLL.d("apitest");
 
         /**
@@ -33,18 +56,18 @@ public class AppTest {
          * 方法： GET
          */
         OkHttpProcessor processor = new OkHttpProcessor();
-//        processor.get("https://wanandroid.com/wxarticle/chapters/json", new IHttpCallback() {
-//        processor.get("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=3", new IHttpCallback() {
-//            @Override
-//            public void onSuccess(String result) {
-//                LLL.d("apitest result=" + result);
-//            }
-//
-//            @Override
-//            public void onFailure(String error, int code) {
-//
-//            }
-//        });
+        processor.get("https://wanandroid.com/wxarticle/chapters/json", new IHttpCallback() {
+            //        processor.get("https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=3", new IHttpCallback() {
+            @Override
+            public void onSuccess(String result) {
+                LLL.d("apitest result=" + result);
+            }
+
+            @Override
+            public void onFailure(String error, int code) {
+
+            }
+        });
 
 
         /**
@@ -60,7 +83,7 @@ public class AppTest {
         map.put("repassword", "000000");
 
         processor.post("https://www.wanandroid.com/user/register", map, new IHttpCallback() {
-//        processor.post("https://www.wanandroid.com/user/login", map, new IHttpCallback() {
+            //        processor.post("https://www.wanandroid.com/user/login", map, new IHttpCallback() {
 //        processor.post("https://www.wanandroid.com/lg/uncollect_originId/2333/json", null, new IHttpCallback() {
             @Override
             public void onSuccess(String result) {

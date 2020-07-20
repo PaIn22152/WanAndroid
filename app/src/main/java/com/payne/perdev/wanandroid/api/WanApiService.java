@@ -1,6 +1,10 @@
 package com.payne.perdev.wanandroid.api;
 
+import com.payne.perdev.api.Call;
 import com.payne.perdev.api.i.GET;
+import com.payne.perdev.wanandroid.beans.WXArticleBean;
+
+import java.util.List;
 
 /**
  * Project    WanAndroid
@@ -13,10 +17,10 @@ public interface WanApiService {
 
 
     /**
-    * 获取公众号列表
+     * 获取公众号列表
      * https://wanandroid.com/wxarticle/chapters/json
      * 方法： GET
-    * */
-    @GET("wxarticle/chapters/json")
-    String test();
+     */
+    @GET("/wxarticle/chapters/json")
+    Call<List<WXArticleBean>> getWXArticle();
 }
