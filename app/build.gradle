@@ -74,10 +74,15 @@ dependencies {
 
     //ButterKnife
     implementation "com.jakewharton:butterknife:$butterKnifeVer"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVer"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVer"
+//    annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVer"
 
     //lottie
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+
+    //CustomViews
+    implementation 'com.github.PaIn22152:CustomViews:1.0.0'
 
 
 

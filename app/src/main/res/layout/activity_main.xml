@@ -10,4 +10,9 @@
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
 
+    <com.perdev.viewlib.widget.TabLayout
+        android:id="@+id/tl_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
 </RelativeLayout>
